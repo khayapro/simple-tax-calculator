@@ -42,9 +42,7 @@ class ViewController: UIViewController {
             subTotalField.text = String(orderNum)
             taxField.text = String("R \(taxAmount)")
             totalField.text = String("R \(totalAmount)")
-        }
-        
-        if state != "WI" || state != "Wisconsin" {
+        } else {
             subTotalField.text = String(orderNum)
             taxField.text = String("R 0.00")
             totalField.text = String("R \(orderNum)")
