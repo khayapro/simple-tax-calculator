@@ -10,9 +10,21 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var orderNumberField: UITextField!
+    @IBOutlet weak var stateField: UITextField!
+    @IBOutlet weak var subTotalField: UITextField!
+    @IBOutlet weak var taxField: UITextField!
+    @IBOutlet weak var totalField: UITextField!
+    let taxPercentage: Double = 0.55
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        subTotalField.isEnabled = false
+        taxField.isEnabled = false
+        totalField.isEnabled = false
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +32,24 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    @IBAction func calculateTax(_ sender: UIButton) {
+        let orderNum:Double = Double(orderNumberField.text!)!
+        let state:String = stateField.text!
+        
+        if state == "WI" || state == "Wisconsin" {
+            let taxAmount = orderNum * taxPercentage
+            let totalAmount = orderNum + taxAmount
+            subTotalField.text = String(orderNum)
+            taxField.text = String("R \(taxAmount)")
+            totalField.text = String("R \(totalAmount)")
+        }
+        
+        if state != "WI" || state != "Wisconsin" {
+            subTotalField.text = String(orderNum)
+            taxField.text = String("R 0.00")
+            totalField.text = String("R \(orderNum)")
+        }
+    }
+    
 }
 
