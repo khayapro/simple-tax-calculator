@@ -39,7 +39,7 @@ class ViewController: UIViewController {
         if state == "WI" || state == "Wisconsin" {
             let taxAmount = orderNum * taxPercentage
             let totalAmount = orderNum + taxAmount
-            subTotalField.text = String(orderNum)
+            subTotalField.text = String("R \(orderNum)")
             taxField.text = String("R \(taxAmount)")
             totalField.text = String("R \(totalAmount)")
         } else {
